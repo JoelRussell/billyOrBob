@@ -26,7 +26,7 @@
         <div class="form-group">
             <label for="optionBurnsReference">Restrict Burns texts to compare to</label>
             <select id="optionBurnsReference" multiple="multiple">
-                @foreach (var filename in Model.ShakespeareFiles)
+                @foreach (var filename in Model.BurnsFiles)
                 {
                     {<option value="@filename" selected="selected">@filename</option>}
                 }
