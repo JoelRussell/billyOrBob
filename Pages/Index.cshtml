@@ -6,5 +6,33 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    Enter your text, and if you'd like, change some of the options (particularly if you want to remove the test data from the reference set) and give it a go!
+    <form>
+        <div class="form-group">
+            <label for="testTextInput">Enter your text to be tested</label>
+            <textarea class="form-control" id="testTextInput" placeholder="Fair is foul and foul is fair..."></textarea>
+        </div>
+
+        <h3>Options</h3>
+        <div class="form-group">
+            <label for="optionShakespeareReference">Restrict Shakespeare texts to compare to</label>
+            <select id="optionShakespeareReference" multiple="multiple">
+                @foreach (var filename in Model.ShakespeareFiles)
+                {
+                    {<option value="@filename" selected="selected">@filename</option>}
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="optionBurnsReference">Restrict Burns texts to compare to</label>
+            <select id="optionBurnsReference" multiple="multiple">
+                @foreach (var filename in Model.ShakespeareFiles)
+                {
+                    {<option value="@filename" selected="selected">@filename</option>}
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Test</button>
+    </form>
+
 </div>

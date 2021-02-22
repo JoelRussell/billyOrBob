@@ -10,6 +10,18 @@ namespace billyOrBob.Pages
 {
     public class IndexModel : PageModel
     {
+
+        // TODO Reference actual files
+        public string[] ShakespeareFiles { get; private set; } = {
+            "much_afoo_abar_nothing",
+            "foolius_ceabar",
+            "midwinter_nights_code"
+        };
+        public string[] BurnsFiles { get; private set; } = {
+            "much_afoo_abar_nothing",
+            "foolius_ceabar",
+            "midwinter_nights_code"
+        };
         private readonly ILogger<IndexModel> _logger;
 
         public IndexModel(ILogger<IndexModel> logger)
@@ -19,6 +31,7 @@ namespace billyOrBob.Pages
 
         public void OnGet()
         {
+
 
         }
     }
