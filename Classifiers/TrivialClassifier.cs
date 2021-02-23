@@ -1,6 +1,6 @@
 namespace billyOrBob.Classifiers
 {
-    public class TrivialClassifier {
+    public class TrivialClassifier : IClassifier {
         public TrivialClassifier() {
 
         }

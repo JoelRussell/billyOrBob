@@ -37,7 +37,7 @@ namespace billyOrBob.Pages
 
         public void OnPost() {
             string textToTest = Request.Form["testTextInput"];
-            TrivialClassifier classifier = new TrivialClassifier();
+            IClassifier classifier = new TrivialClassifier();
             result = classifier.Classify(textToTest);
         }
 
