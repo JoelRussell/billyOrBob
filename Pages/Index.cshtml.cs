@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
+using billyOrBob.Classifiers;
 
 namespace billyOrBob.Pages
 {
@@ -17,6 +18,7 @@ namespace billyOrBob.Pages
         // TODO Reference actual files
         public string[] ShakespeareFiles { get; private set; } = {};
         public string[] BurnsFiles { get; private set; } = {};
+        public string result { get; private set; } = null;
         private readonly ILogger<IndexModel> _logger;
 
         public IndexModel(ILogger<IndexModel> logger, IConfiguration configuration)
@@ -29,8 +31,14 @@ namespace billyOrBob.Pages
 
         public void OnGet()
         {
+            //string text = Request.Form["t"];
 
+        }
 
+        public void OnPost() {
+            string textToTest = Request.Form["testTextInput"];
+            TrivialClassifier classifier = new TrivialClassifier();
+            result = classifier.Classify(textToTest);
         }
 
         public string[] fileNames(string directory) {
