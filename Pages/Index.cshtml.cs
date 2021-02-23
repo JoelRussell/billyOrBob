@@ -37,7 +37,14 @@ namespace billyOrBob.Pages
 
         public void OnPost() {
             string textToTest = Request.Form["testTextInput"];
-            IClassifier classifier = new TrivialClassifier();
+            IClassifier classifier;
+            if (Request.Form["optionClassifier"] == "frequency") {
+                classifier = new FrequencyClassifier();
+                classifier.SetConfig("ShakespeareCorpus", Configuration["ShakespeareCorpus"]);
+                classifier.SetConfig("BurnsCorpus", Configuration["BurnsCorpus"]);
+            } else {
+                classifier = new TrivialClassifier();
+            }
             result = classifier.Classify(textToTest);
         }
 

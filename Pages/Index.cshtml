@@ -14,7 +14,7 @@
         </div>
 
         <h3>Options</h3>
-        <div class="form-group">
+        @* <div class="form-group">
             <label for="optionShakespeareReference">Restrict Shakespeare texts to compare to</label>
             <select id="optionShakespeareReference" id="optionShakespeareReference" multiple="multiple">
                 @foreach (var filename in Model.ShakespeareFiles)
@@ -30,6 +30,13 @@
                 {
                     {<option value="@filename" selected="selected">@filename</option>}
                 }
+            </select>
+        </div> *@
+        <div class="form-group">
+            <label for="optionClassifier">Choose which classifier to use</label>
+            <select id="optionClassifier" name="optionClassifier">
+                <option value="frequency">Frequency (who uses these words the most)</option>
+                <option value="trivial">Trivial (checks for one scottish word)</option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Test</button>
