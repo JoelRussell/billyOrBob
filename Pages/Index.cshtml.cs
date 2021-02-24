@@ -31,7 +31,6 @@ namespace billyOrBob.Pages
 
         public void OnGet()
         {
-            //string text = Request.Form["t"];
 
         }
 
