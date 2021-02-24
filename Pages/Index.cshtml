@@ -10,7 +10,7 @@
     <form method="post" action="#" asp-antiforgery="true">
         <div class="form-group">
             <label for="testTextInput">Enter your text to be tested</label>
-            <textarea class="form-control" id="testTextInput" name="testTextInput" placeholder="Fair is foul and foul is fair..."></textarea>
+            <textarea class="form-control" id="testTextInput" name="testTextInput" placeholder="Fair is foul and foul is fair...">@Model.TextToTest</textarea>
         </div>
 
         <h3>Options</h3>
@@ -19,7 +19,14 @@
             <select class="activate-multiselect" id="optionShakespeareExclude" name="optionShakespeareExclude" multiple="multiple">
                 @foreach (var filename in Model.ShakespeareFiles)
                 {
-                    <option value="@filename">@filename</option>
+                    @if (Model.ShakespeareExclude.Contains(filename))
+                    {
+                        <option value="@filename" selected>@filename</option>
+                    }
+                    else
+                    {
+                        <option value="@filename">@filename</option>
+                    }
                 }
             </select>
         </div>
@@ -28,7 +35,14 @@
             <select class="activate-multiselect" id="optionBurnsExclude" name="optionBurnsExclude" multiple="multiple">
                 @foreach (var filename in Model.BurnsFiles)
                 {
-                    <option value="@filename">@filename</option>
+                    @if (Model.BurnsExclude.Contains(filename))
+                    {
+                        <option value="@filename" selected>@filename</option>
+                    }
+                    else
+                    {
+                        <option value="@filename">@filename</option>
+                    }
                 }
             </select>
         </div>

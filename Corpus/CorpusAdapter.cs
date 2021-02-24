@@ -34,7 +34,6 @@ namespace billyOrBob.Corpus
                 }
             }
         }
-        
         private void addFile(string path) {
             string text = File.ReadAllText(path);
             // Prepare text for processing
