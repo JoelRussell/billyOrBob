@@ -40,6 +40,12 @@ namespace billyOrBob.Pages
             if (Request.Form["optionClassifier"] == "frequency") {
                 classifier = new FrequencyClassifier();
                 classifier.SetConfig("ShakespeareCorpus", Configuration["ShakespeareCorpus"]);
+                if (!String.IsNullOrEmpty(Request.Form["optionShakespeareExclude"])){
+                    classifier.SetConfig("shakespeareExclude", Request.Form["optionShakespeareExclude"]);
+                }
+                if (!String.IsNullOrEmpty(Request.Form["optionBurnsExclude"])){
+                    classifier.SetConfig("burnsExclude", Request.Form["optionBurnsExclude"]);
+                }
                 classifier.SetConfig("BurnsCorpus", Configuration["BurnsCorpus"]);
             } else {
                 classifier = new TrivialClassifier();

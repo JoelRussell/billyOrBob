@@ -9,25 +9,40 @@ namespace billyOrBob.Corpus
 {
     public class CorpusAdapter {
         public string DirectoryPath { get; }
-        public string[] CorpusFiles { get; }
-        
+        public string[] ExcludeFiles { get; set; }
         private Dictionary<string, int> WordStats;
         
         public CorpusAdapter(string directoryPath) {
             this.DirectoryPath = directoryPath;
             this.WordStats = new Dictionary<string, int>();
-            if (!Directory.Exists(directoryPath)) {
+
+
+        }
+
+        public void ProcessCorpus() {
+            DirectoryInfo directoryInfo = new DirectoryInfo(DirectoryPath);
+            if (!directoryInfo.Exists) {
                 // TODO Handle directory error
             }
-            this.CorpusFiles = Directory.GetFiles(directoryPath);
-            foreach (var filename in this.CorpusFiles)
+
+            foreach (var file in directoryInfo.GetFiles())
             {
-                // TODO check if excluded file
-                string text = File.ReadAllText(filename);
-                text = TextUtilities.CleanText(text);
-                string[] words = text.Split(' ');
-                foreach (var word in words)
-                {
+                // Check the file has not been excluded
+                if (ExcludeFiles == null || !ExcludeFiles.Contains(file.Name)) {
+                    // Process this file and add its stats to the corpus stats
+                    addFile(file.FullName);
+                }
+            }
+        }
+        
+        private void addFile(string path) {
+            string text = File.ReadAllText(path);
+            // Prepare text for processing
+            text = TextUtilities.CleanText(text);
+            string[] words = text.Split(' ');
+            foreach (var word in words)
+            {
+                if (word.Length >= 1) {
                     if (!this.WordStats.ContainsKey(word)) {
                         this.WordStats.Add(word, 1);
                     }
@@ -37,6 +52,7 @@ namespace billyOrBob.Corpus
                 }
             }
         }
+        
 
         public int CountWordInCorpus(string word) {
             if (this.WordStats.ContainsKey(word)) {

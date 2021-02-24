@@ -17,9 +17,15 @@ namespace billyOrBob.Classifiers
 
         public string Classify(string inputText) {
             CorpusAdapter shakespeareWordStats = new CorpusAdapter(config["ShakespeareCorpus"]);
+            if (config.ContainsKey("shakespeareExclude")) {
+                shakespeareWordStats.ExcludeFiles = config["shakespeareExclude"].Split(',');
+            }
+            shakespeareWordStats.ProcessCorpus();
             CorpusAdapter burnsWordStats = new CorpusAdapter(config["BurnsCorpus"]);
-            // Dictionary<string,int> shakespeareWordStats = CorpusWordCount(config["ShakespeareCorpus"]);
-            // Dictionary<string,int> burnsWordStats = CorpusWordCount(config["BurnsCorpus"]);
+            if (config.ContainsKey("burnsExclude")) { 
+                burnsWordStats.ExcludeFiles = config["burnsExclude"].Split(',');
+            }
+            burnsWordStats.ProcessCorpus();
             float shakespeareWordCountMultiplier = (float) burnsWordStats.TotalWordCountOfCorpus() / (float) shakespeareWordStats.TotalWordCountOfCorpus();
             int score = 0;
             inputText = TextUtilities.CleanText(inputText);
@@ -34,9 +40,7 @@ namespace billyOrBob.Classifiers
                 // Decrements the score by 1 if Burns uses the word more
                 // Doesn't change the score if they are equal
                 score += shakespeareScore.CompareTo(burnsScore);
-
             }
-
             if (score > 0) {
                 return "Billy";
             }

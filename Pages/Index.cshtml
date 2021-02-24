@@ -14,24 +14,24 @@
         </div>
 
         <h3>Options</h3>
-        @* <div class="form-group">
-            <label for="optionShakespeareReference">Restrict Shakespeare texts to compare to</label>
-            <select id="optionShakespeareReference" id="optionShakespeareReference" multiple="multiple">
+        <div class="form-group">
+            <label for="optionShakespeareExclude">Exclude the following texts from the Shakespeare corpus</label>
+            <select class="activate-multiselect" id="optionShakespeareExclude" name="optionShakespeareExclude" multiple="multiple">
                 @foreach (var filename in Model.ShakespeareFiles)
                 {
-                    {<option value="@filename" selected="selected">@filename</option>}
+                    <option value="@filename">@filename</option>
                 }
             </select>
         </div>
         <div class="form-group">
-            <label for="optionBurnsReference">Restrict Burns texts to compare to</label>
-            <select id="optionBurnsReference" name="optionBurnsReference" multiple="multiple">
+            <label for="optionBurnsExclude">Exclude the following texts from the Burns corpus</label>
+            <select class="activate-multiselect" id="optionBurnsExclude" name="optionBurnsExclude" multiple="multiple">
                 @foreach (var filename in Model.BurnsFiles)
                 {
-                    {<option value="@filename" selected="selected">@filename</option>}
+                    <option value="@filename">@filename</option>
                 }
             </select>
-        </div> *@
+        </div>
         <div class="form-group">
             <label for="optionClassifier">Choose which classifier to use</label>
             <select id="optionClassifier" name="optionClassifier">
