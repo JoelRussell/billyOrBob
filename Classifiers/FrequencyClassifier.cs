@@ -10,20 +10,20 @@ namespace billyOrBob.Classifiers
 {
     public class FrequencyClassifier : IClassifier {
         
-        public Dictionary<string, string> config = new Dictionary<string, string>();
+        public Dictionary<string, string> Config = new Dictionary<string, string>();
         public FrequencyClassifier() {
 
         }
 
         public string Classify(string inputText) {
-            CorpusAdapter shakespeareWordStats = new CorpusAdapter(config["ShakespeareCorpus"]);
-            if (config.ContainsKey("shakespeareExclude")) {
-                shakespeareWordStats.ExcludeFiles = config["shakespeareExclude"].Split(',');
+            CorpusAdapter shakespeareWordStats = new CorpusAdapter(Config["ShakespeareCorpus"]);
+            if (Config.ContainsKey("shakespeareExclude")) {
+                shakespeareWordStats.ExcludeFiles = Config["shakespeareExclude"].Split(',');
             }
             shakespeareWordStats.ProcessCorpus();
-            CorpusAdapter burnsWordStats = new CorpusAdapter(config["BurnsCorpus"]);
-            if (config.ContainsKey("burnsExclude")) { 
-                burnsWordStats.ExcludeFiles = config["burnsExclude"].Split(',');
+            CorpusAdapter burnsWordStats = new CorpusAdapter(Config["BurnsCorpus"]);
+            if (Config.ContainsKey("burnsExclude")) { 
+                burnsWordStats.ExcludeFiles = Config["burnsExclude"].Split(',');
             }
             burnsWordStats.ProcessCorpus();
             float shakespeareWordCountMultiplier = (float) burnsWordStats.TotalWordCountOfCorpus() / (float) shakespeareWordStats.TotalWordCountOfCorpus();
@@ -54,7 +54,7 @@ namespace billyOrBob.Classifiers
 
         
         public void SetConfig(string key, string value) {
-            config.Add(key, value);
+            Config.Add(key, value);
         }
 
 

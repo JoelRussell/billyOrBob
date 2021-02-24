@@ -4,13 +4,13 @@ namespace billyOrBob.Classifiers
 {
     public class TrivialClassifier : IClassifier {
         
-        public Dictionary<string, string> config = new Dictionary<string, string>();
+        public Dictionary<string, string> Config = new Dictionary<string, string>();
         public TrivialClassifier() {
             SetConfig("word","auld");
         }
 
         public string Classify(string inputText) {
-            if (inputText.Contains(config["word"])) {
+            if (inputText.Contains(Config["word"])) {
                 return "This is Burns";
             }
             else {
@@ -18,7 +18,7 @@ namespace billyOrBob.Classifiers
             }
         }
         public void SetConfig(string key, string value) {
-            config.Add(key, value);
+            Config.Add(key, value);
         }
     }
 

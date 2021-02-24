@@ -18,7 +18,7 @@ namespace billyOrBob.Pages
         // TODO Reference actual files
         public string[] ShakespeareFiles { get; private set; } = {};
         public string[] BurnsFiles { get; private set; } = {};
-        public string result { get; private set; } = null;
+        public string Result { get; private set; } = null;
         public string TextToTest { get; private set; } = "";
         public string[] ShakespeareExclude { get; private set; } = {};
         public string[] BurnsExclude { get; private set; } = {};
@@ -28,8 +28,8 @@ namespace billyOrBob.Pages
         {
             _logger = logger;
             Configuration = configuration;
-            ShakespeareFiles = fileNames(Configuration["ShakespeareCorpus"]);
-            BurnsFiles = fileNames(Configuration["BurnsCorpus"]);
+            ShakespeareFiles = FileNames(Configuration["ShakespeareCorpus"]);
+            BurnsFiles = FileNames(Configuration["BurnsCorpus"]);
         }
 
         public void OnGet()
@@ -55,10 +55,10 @@ namespace billyOrBob.Pages
             } else {
                 classifier = new TrivialClassifier();
             }
-            result = classifier.Classify(TextToTest);
+            Result = classifier.Classify(TextToTest);
         }
 
-        public string[] fileNames(string directory) {
+        public string[] FileNames(string directory) {
             return new DirectoryInfo(directory).GetFiles().Select(f => f.Name).ToArray();
         }
     }
