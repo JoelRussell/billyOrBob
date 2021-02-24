@@ -20,7 +20,6 @@ namespace billyOrBob.Classifiers
             Dictionary<string,int> burnsWordStats = CorpusWordCount(config["BurnsCorpus"]);
             float shakespeareWordCountMultiplier = (float) burnsWordStats.Sum(x => x.Value) / (float) shakespeareWordStats.Sum(x => x.Value);
             int score = 0;
-
             inputText = cleanText(inputText);
             string[] inputWords = inputText.Split(' ');
             foreach (var word in inputWords)
@@ -83,11 +82,11 @@ namespace billyOrBob.Classifiers
 
         public string cleanText(string inputText) {
             // Characters to simply remove from the text
-            string removeChars = "[-']";
+            string removeChars = "[-]";
             inputText = Regex.Replace(inputText, removeChars, String.Empty);
 
             // Characters to replace with spaces
-            string spaceChars = "[^A-Za-z]";
+            string spaceChars = "[^A-Za-z']";
             inputText = Regex.Replace(inputText, spaceChars, " ");
             inputText = Regex.Replace(inputText, "\\ {2,}", " ");
             return inputText.ToLower();
